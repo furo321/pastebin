@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pastebin</title>
+        <meta name="description" content="A dead simple pastebin service!">
+        <style>
+            html, body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",sans-serif;
+                background-color: #101014;
+                width: 70rem;
+                max-width: 85%;
+                margin: auto;
+            }
+
+            textarea, pre {
+                width: 100%;
+                max-width: 100%;
+                min-width: 100%;
+                min-height: 55vh;
+                background-color: #0d1117;
+                border-radius: 0.25rem;
+                padding: 1rem;
+                box-sizing: border-box;
+                margin-bottom: 1rem;
+                overflow-x: auto;
+            }
+
+            label {
+                cursor: pointer;
+                user-select: none;
+            }
+
+            input, select {
+                accent-color: #0d1117;
+                border-radius: 0.25rem;
+                padding: 1rem;
+                background-color: #0d1117;
+            }
+
+            input:hover, select:hover {
+                border-color: pink;
+                cursor: pointer;
+            }
+
+            textarea, input, select {
+                border: 2px solid white;
+            }
+
+            textarea:focus, textarea:hover, pre, select:focus {
+                outline: none;
+                border: 2px solid pink;
+            }
+
+            footer {
+                padding: 1rem;
+                text-align: center;
+            }
+
+            .right {
+                float: right;
+            }
+
+            .seperator {
+                margin: 5px;
+                color: pink;
+            }
+
+            .wrap {
+                white-space: pre-wrap;
+                overflow-wrap: break-word;
+            }
+
+            .error {
+                padding: 0.25rem;
+                margin: 0.2rem;
+                border-radius: 2px;
+                background-color: rgb(218, 83, 83);
+            }
+
+            * {
+                color: white
+            }
+
+            @media screen and (max-width:650px) {
+                html, body {
+                    max-width: 95%;
+                }
+                form > .right {
+                    float: none;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Pastebin</h1>
+
+        {{ yield }}
+
+        <footer>
+            <a href="https://github.com/furo321/pastebin">Source code</a> <span class="seperator">|</span>
+            <a href="/cli">CLI tool</a>
+        </footer>
+    </body>
+</html>

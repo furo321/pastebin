@@ -1,0 +1,49 @@
+{{ if ne .Flash "" }}
+<div class="error">
+    <p>{{ .Flash }}</p>
+</div>
+{{ end }}
+
+
+<form action="/" method="post">
+    <textarea name="content" id="content" spellcheck="false" placeholder="Tab key can be used." required autofocus></textarea>
+
+    <select autocomplete="off" name="expire" id="expire">
+        <option value="86400" selected hidden>Expiration (1 day)</option>
+        <option value="600">10 minutes</option>
+        <option value="3600">1 hour</option>
+        <option value="86400">1 day</option>
+        <option value="604800">1 week</option>
+        <option value="0">eternal</option>
+    </select>
+    <select style="margin-left: 10px" autocomplete="off" name="syntax" id="syntax">
+        <option value="disabled" selected>Syntax highlighting (disabled)</option>
+        {{ range $lang := .Languages }}
+        <option value="{{ $lang }}">{{ $lang }}</option>
+        {{ end }}
+    </select>
+
+    <div class="right">
+        <input type="submit" value="Create paste">
+    </div>
+</form>
+<br>
+
+<script>
+// Ability to use tab for indent in textarea
+document.querySelector ('textarea').addEventListener ('keydown', function (evt) {
+    if (!evt) return;
+
+    if (evt.key == 'Tab') {
+        evt.preventDefault ();
+
+        var start = this.selectionStart;
+        var end = this.selectionEnd;
+        var target = evt.target;
+        var value = target.value;
+
+        target.value = value.substring (0, start) + '\t' + value.substring (end);
+        this.selectionStart = this.selectionEnd = start + 1;
+    }
+});
+</script>

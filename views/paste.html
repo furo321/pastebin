@@ -1,0 +1,24 @@
+<div>
+    <a href="/{{ .Id }}/raw">Raw</a> <span class="seperator">|</span>
+    <a href="/">New paste</a>
+
+    {{ if eq .Expire 0 }}
+    <span class="right">Never expires</span>
+    {{ else }}
+    <span class="right">Expires in {{ . | duration | humanize }}</span>
+    {{ end }}
+</div>
+
+{{ if ne .Syntax "disabled" }}
+{{ .SyntaxContent | unescape }}
+{{ else}}
+<pre class="wrap">{{ .Content }}</pre>
+{{ end }}
+
+<p>
+    Paste created at {{ .CreatedAt.Format "2006-01-02 15:04:05" }}
+
+    {{ if ne .Syntax "disabled" }}
+        <span class="right">Syntax: {{ .Syntax }}</span>
+    {{ end }}
+</p>
